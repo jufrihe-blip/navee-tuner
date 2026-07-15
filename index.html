@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navee Scooter Tuner Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Navee Scooter Tuner</h1>
+            <p class="subtitle">Spezialisiert auf Navee (ST3 Pro, V25i Pro, V40, GT3 & kompatible)</p>
+        </header>
+
+        <!-- Verbindungs-Sektion -->
+        <section class="card connection-card">
+            <div id="connection-status" class="status disconnected">Nicht verbunden</div>
+            <button id="btn-connect" class="btn primary">Scooter verbinden (Bluetooth)</button>
+            <button id="btn-disconnect" class="btn danger hidden">Verbindung trennen</button>
+        </section>
+
+        <!-- Einstellungs-Sektion (Deaktiviert bis Verbindung steht) -->
+        <section id="settings-panel" class="disabled">
+            
+            <!-- Geschwindigkeit -->
+            <div class="card">
+                <h3>Max. Geschwindigkeit (S-Modus)</h3>
+                <div class="range-container">
+                    <input type="range" id="speed-limit" min="15" max="45" value="20" disabled>
+                    <span id="speed-val">20 km/h</span>
+                </div>
+                <p class="hint">Achtung: Erhöhte Geschwindigkeiten sind im öffentlichen Straßenverkehr (StVZO) nicht zulässig!</p>
+            </div>
+
+            <!-- Zero Start / Kick Start -->
+            <div class="card toggle-card">
+                <div>
+                    <h3>Zero Start (Direktstart)</h3>
+                    <p class="card-desc">Gas geben direkt aus dem Stand, ohne Anschieben.</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="zero-start" disabled>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Tempomat (Cruise Control) -->
+            <div class="card toggle-card">
+                <div>
+                    <h3>Tempomat (Cruise Control)</h3>
+                    <p class="card-desc">Hält das Tempo nach ca. 5 Sekunden Gas halten.</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="cruise-control" disabled>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Police Mode -->
+            <div class="card toggle-card">
+                <div>
+                    <h3>Police Mode (Sicherheits-Modus)</h3>
+                    <p class="card-desc">Setzt das Tuning beim Aus- und Einschalten auf 20 km/h zurück.</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="police-mode" disabled>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Custom Tastenkombinationen (Combos) -->
+            <div class="card">
+                <h3>Aktivierungs-Tastenkombination</h3>
+                <p class="card-desc" style="margin-bottom: 12px;">Wähle die Tastenkombination am Lenker, mit der das Tuning beim Starten scharfgeschaltet wird:</p>
+                <div class="combo-grid">
+                    <button class="btn btn-combo active" data-combo="5x_brake">5x Bremse</button>
+                    <button class="btn btn-combo" data-combo="5x_gas">5x Gas</button>
+                    <button class="btn btn-combo" data-combo="2x_lbrake">2x Linke Bremse</button>
+                    <button class="btn btn-combo" data-combo="instant">Immer Aktiv</button>
+                </div>
+                <div class="status-msg green" style="margin-top: 10px; font-size: 0.85rem; font-weight: 600;">
+                    ✓ Kombination scharfgeschaltet
+                </div>
+            </div>
+
+            <!-- Firmware Flash -->
+            <div class="card flash-card">
+                <h3>Custom Firmware Flash</h3>
+                <p class="card-desc" style="margin-bottom: 15px;">Überträgt die obigen Einstellungen dauerhaft oder als Custom-Profil an das Steuergerät deines V25i Pro.</p>
+                <button id="btn-flash" class="btn warning" disabled>Flash Custom Firmware</button>
+                <div class="progress-container hidden" id="flash-progress-bar">
+                    <div class="progress-bar" id="progress-fill">0%</div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
