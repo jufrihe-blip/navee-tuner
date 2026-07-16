@@ -20,7 +20,7 @@
             <button id="btn-disconnect" class="btn danger hidden">Verbindung trennen</button>
         </section>
 
-        <!-- Einstellungs-Sektion (Deaktiviert bis Verbindung steht) -->
+        <!-- Einstellungs-Sektion -->
         <section id="settings-panel" class="disabled">
             
             <!-- Geschwindigkeit -->
@@ -33,7 +33,7 @@
                 <p class="hint">Achtung: Erhöhte Geschwindigkeiten sind im öffentlichen Straßenverkehr (StVZO) nicht zulässig!</p>
             </div>
 
-            <!-- Zero Start / Kick Start -->
+            <!-- Zero Start -->
             <div class="card toggle-card">
                 <div>
                     <h3>Zero Start (Direktstart)</h3>
@@ -45,7 +45,7 @@
                 </label>
             </div>
 
-            <!-- Tempomat (Cruise Control) -->
+            <!-- Tempomat -->
             <div class="card toggle-card">
                 <div>
                     <h3>Tempomat (Cruise Control)</h3>
@@ -69,7 +69,7 @@
                 </label>
             </div>
 
-            <!-- Custom Tastenkombinationen (Combos) -->
+            <!-- Tastenkombinationen -->
             <div class="card">
                 <h3>Aktivierungs-Tastenkombination</h3>
                 <p class="card-desc" style="margin-bottom: 12px;">Wähle die Tastenkombination am Lenker, mit der das Tuning beim Starten scharfgeschaltet wird:</p>
@@ -79,15 +79,12 @@
                     <button class="btn btn-combo" data-combo="2x_lbrake">2x Linke Bremse</button>
                     <button class="btn btn-combo" data-combo="instant">Immer Aktiv</button>
                 </div>
-                <div class="status-msg green" style="margin-top: 10px; font-size: 0.85rem; font-weight: 600;">
-                    ✓ Kombination scharfgeschaltet
-                </div>
             </div>
 
             <!-- Firmware Flash -->
             <div class="card flash-card">
                 <h3>Custom Firmware Flash</h3>
-                <p class="card-desc" style="margin-bottom: 15px;">Überträgt die obigen Einstellungen dauerhaft oder als Custom-Profil an das Steuergerät deines V25i Pro.</p>
+                <p class="card-desc" style="margin-bottom: 15px;">Überträgt die obigen Einstellungen an das Steuergerät deines V25i Pro.</p>
                 <button id="btn-flash" class="btn warning" disabled>Flash Custom Firmware</button>
                 <div class="progress-container hidden" id="flash-progress-bar">
                     <div class="progress-bar" id="progress-fill">0%</div>
@@ -99,4 +96,5 @@
 
     <script src="app.js"></script>
 </body>
-</html>
+                        </html>
+    
