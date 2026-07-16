@@ -1,8 +1,8 @@
 :root {
     --bg-color: #0b0f19;
     --card-bg: #151f32;
-    --primary-color: #f59e0b; /* Sportliches Bernstein-Gelb */
-    --accent-color: #10b981;  /* Neon-Grün */
+    --primary-color: #f59e0b;
+    --accent-color: #10b981;
     --danger-color: #ef4444;
     --text-color: #f8fafc;
     --text-muted: #94a3b8;
@@ -69,7 +69,6 @@ h1 {
     padding: 8px 18px;
     border-radius: 30px;
     font-size: 0.85rem;
-    letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 
@@ -106,28 +105,15 @@ h1 {
     color: #0b0f19;
 }
 
-.btn.primary:hover {
-    background: #d97706;
-}
-
 .btn.danger {
     background: rgba(239, 68, 68, 0.2);
     color: var(--danger-color);
     border: 1px solid var(--danger-color);
 }
 
-.btn.danger:hover {
-    background: var(--danger-color);
-    color: white;
-}
-
 .btn.warning {
     background: var(--accent-color);
     color: #0b0f19;
-}
-
-.btn.warning:hover {
-    background: #059669;
 }
 
 .btn.warning:disabled {
@@ -154,7 +140,6 @@ h1 {
     display: none;
 }
 
-/* Slider & Switches */
 .range-container {
     display: flex;
     align-items: center;
@@ -199,7 +184,6 @@ input[type="range"] {
     font-style: italic;
 }
 
-/* Toggle Switch */
 .switch {
     position: relative;
     display: inline-block;
@@ -250,11 +234,6 @@ input:checked + .slider:before {
     margin-top: 10px;
 }
 
-.status-msg.green {
-    color: var(--accent-color);
-}
-
-/* Progress Bar */
 .progress-container {
     background: #1e293b;
     border-radius: 10px;
@@ -272,4 +251,5 @@ input:checked + .slider:before {
     width: 0%;
     transition: width 0.1s ease;
     font-size: 0.85rem;
-}
+    }
+    
