@@ -2,6 +2,7 @@ let device = null;
 let server = null;
 let writeChar = null;
 let selectedCombo = "5x_brake";
+let keepAliveInterval = null; // Timer für das Wachhalten der Verbindung
 
 const btnConnect = document.getElementById('btn-connect');
 const btnDisconnect = document.getElementById('btn-disconnect');
@@ -23,7 +24,6 @@ btnConnect.addEventListener('click', async () => {
         statusDiv.textContent = "Scanne nach Scootern...";
         statusDiv.className = "status disconnected";
 
-        // Bluetooth-Scan ohne strenge Vorab-Filter, um Blockaden zu vermeiden
         device = await navigator.bluetooth.requestDevice({
             acceptAllDevices: true,
             optionalServices: [
@@ -34,6 +34,9 @@ btnConnect.addEventListener('click', async () => {
                 '00001801-0000-1000-8000-00805f9b34fb'
             ]
         });
+
+        // Event-Listener, falls der Scooter von sich aus trennt
+        device.addEventListener('gattserverdisconnected', onDisconnected);
 
         statusDiv.textContent = "Kopple mit " + device.name + "...";
         
@@ -86,9 +89,28 @@ function onConnected() {
     cruiseToggle.disabled = false;
     policeToggle.disabled = false;
     btnFlash.disabled = false;
+
+    // --- START KEEP-ALIVE (VERBINDUNG WACHHALTEN) ---
+    // Wir senden sofort einen ersten Handshake-Befehl
+    sendRawBytes([0x5A, 0xA5, 0x01, 0x00, 0x00, 0xFB]); 
+
+    // Alle 2 Sekunden senden wir ein kleines Signal, damit der Scooter aktiv bleibt
+    if (keepAliveInterval) clearInterval(keepAliveInterval);
+    keepAliveInterval = setInterval(async () => {
+        if (device && device.gatt.connected && writeChar) {
+            // Standard-Ping-Byte-Sequenz für Navee/Brightway Controller
+            await sendRawBytes([0x5A, 0xA5, 0x01, 0x10, 0x00, 0xEB]);
+        }
+    }, 2000);
 }
 
 function onDisconnected() {
+    // Timer stoppen, wenn die Verbindung getrennt wird
+    if (keepAliveInterval) {
+        clearInterval(keepAliveInterval);
+        keepAliveInterval = null;
+    }
+
     statusDiv.textContent = "Nicht verbunden";
     statusDiv.className = "status disconnected";
     btnConnect.classList.remove('hidden');
@@ -165,4 +187,4 @@ btnFlash.addEventListener('click', async () => {
         alert("Erfolgreich übertragen!");
     }, 2000);
 });
-                
+                                   
